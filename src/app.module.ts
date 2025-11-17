@@ -8,6 +8,10 @@ import { HttpErrorFilter } from './common/filters/http-error.filter';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { ClassesController } from './controllers/classes.controller';
+import { AuthController } from './controllers/auth.controller';
+import { HttpModule, HttpService } from '@nestjs/axios';
+import { AppController } from './controllers/app.controller';
+import { SocialController } from './controllers/social.controller';
 
 @Module({
     imports: [
@@ -22,13 +26,20 @@ import { ClassesController } from './controllers/classes.controller';
                 CLASSES_QUEUE: Joi.string().required()
             }),
         }),
-        MicroserviceClientsModule
+        MicroserviceClientsModule,
+        HttpModule
     ],
     providers: [
         AppService,
         { provide: APP_FILTER, useClass: HttpErrorFilter}
     ],
-    controllers: [ProfileController, ClassesController],
+    controllers: [
+        ProfileController,
+        ClassesController,
+        AuthController,
+        AppController,
+        SocialController
+    ],
     exports: [AppService]
 })
 export class AppModule {}
