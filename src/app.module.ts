@@ -12,6 +12,7 @@ import { AuthController } from './controllers/auth.controller';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { AppController } from './controllers/app.controller';
 import { SocialController } from './controllers/social.controller';
+import { LeadsProxyController } from './controllers/leads.controller';
 
 @Module({
     imports: [
@@ -38,7 +39,8 @@ import { SocialController } from './controllers/social.controller';
         ClassesController,
         AuthController,
         AppController,
-        SocialController
+        SocialController,
+        LeadsProxyController
     ],
     exports: [AppService]
 })
